@@ -149,23 +149,42 @@ def trip_duration_stats(df):
 
 def user_stats(df):
     """ 
-    User breakdown data for input data
+    Displays statistics on bikeshare users, including additional insights.
     """
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
+    # Count of user types
     print('User Types:\n', df['User Type'].value_counts())
 
+    # Gender breakdown
     if 'Gender' in df.columns:
         print('\nGender Breakdown:\n', df['Gender'].value_counts())
+        print('Missing Gender Data:', df['Gender'].isnull().sum())
+    else:
+        print('\nNo Gender data available.')
 
+    # Birth year statistics
     if 'Birth Year' in df.columns:
         print('\nEarliest Birth Year:', int(df['Birth Year'].min()))
         print('Most Recent Birth Year:', int(df['Birth Year'].max()))
         print('Most Common Birth Year:', int(df['Birth Year'].mode()[0]))
 
+        # Additional birth year stats
+        print('Average Birth Year:', round(df['Birth Year'].mean(), 1))
+        print('Number of Users with Birth Year data:', df['Birth Year'].count())
+    else:
+        print('\nNo Birth Year data available.')
+
+    # Count of missing values in key columns
+    print('\nMissing Values Summary:')
+    for col in ['User Type', 'Gender', 'Birth Year']:
+        if col in df.columns:
+            print(f'  {col}: {df[col].isnull().sum()} missing')
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
 
 def main():
     while True:
