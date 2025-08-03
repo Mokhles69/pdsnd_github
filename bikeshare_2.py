@@ -187,44 +187,52 @@ def user_stats(df):
 
 
 def main():
+    print("🚲 Welcome to the Bikeshare Data Explorer!")
+
     while True:
         city, month, day = get_filters()
 
         if city is None:
-            print("User exited. Goodbye!")
+            print("👋 User exited. Goodbye!")
             break
 
         df = load_data(city, month, day)
 
         if df.empty:
-            print("\n⚠️ No data available for these filters. Try again.")
-            if input("Restart? (yes/no): ").strip().lower() != 'yes':
+            print("\n⚠️ No data available for the selected filters.")
+            restart = input("🔁 Would you like to try again? (yes/no): ").strip().lower()
+            if restart != 'yes':
+                print("👋 Goodbye!")
                 break
             continue
 
-        # Show head
+        # Display 5 rows at a time if user wants
         row_index = 0
+        print("\n📊 Preview of raw data:")
         while True:
-            show = input("Would you like to see 5 rows of data? (yes/no): ").strip().lower()
+            show = input("🔍 Would you like to see 5 rows of data? (yes/no): ").strip().lower()
             if show == 'yes':
                 print(df.iloc[row_index:row_index + 5])
                 row_index += 5
                 if row_index >= len(df):
-                    print("No more data to show.")
+                    print("✅ No more data to display.")
                     break
             elif show == 'no':
                 break
             else:
-                print("Please type 'yes' or 'no'.")
+                print("❌ Invalid input. Please type 'yes' or 'no'.")
 
+        print("\n📈 Generating statistics...\n")
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
 
-        if input('\nWould you like to restart? Enter yes or no.\n').strip().lower() != 'yes':
-            print("Goodbye!")
+        restart = input("\n🔁 Would you like to restart the analysis? (yes/no): ").strip().lower()
+        if restart != 'yes':
+            print("👋 Thanks for using the Bikeshare Data Explorer. Goodbye!")
             break
+
 
 if __name__ == "__main__":
     main()
