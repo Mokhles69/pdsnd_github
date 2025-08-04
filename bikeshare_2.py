@@ -149,11 +149,19 @@ def trip_duration_stats(df):
 
 def user_stats(df):
     """ 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
     Displays statistics on bikeshare users, including additional insights.
     """
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
     # Count of user types
     print('User Types:\n', df['User Type'].value_counts())
 
@@ -169,6 +177,11 @@ def user_stats(df):
         print('\nEarliest Birth Year:', int(df['Birth Year'].min()))
         print('Most Recent Birth Year:', int(df['Birth Year'].max()))
         print('Most Common Birth Year:', int(df['Birth Year'].mode()[0]))
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
 
         # Additional birth year stats
         print('Average Birth Year:', round(df['Birth Year'].mean(), 1))
@@ -193,12 +206,20 @@ def main():
         city, month, day = get_filters()
 
         if city is None:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
             print("👋 User exited. Goodbye!")
             break
 
         df = load_data(city, month, day)
 
         if df.empty:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
             print("\n⚠️ No data available for the selected filters.")
             restart = input("🔁 Would you like to try again? (yes/no): ").strip().lower()
             if restart != 'yes':
@@ -215,11 +236,19 @@ def main():
                 print(df.iloc[row_index:row_index + 5])
                 row_index += 5
                 if row_index >= len(df):
+<<<<<<< HEAD
+=======
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
                     print("✅ No more data to display.")
                     break
             elif show == 'no':
                 break
             else:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
                 print("❌ Invalid input. Please type 'yes' or 'no'.")
 
         print("\n📈 Generating statistics...\n")
@@ -228,6 +257,10 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 509d01d (refactor: Merge documentation & refactoring)
         restart = input("\n🔁 Would you like to restart the analysis? (yes/no): ").strip().lower()
         if restart != 'yes':
             print("👋 Thanks for using the Bikeshare Data Explorer. Goodbye!")
